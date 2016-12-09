@@ -23,7 +23,8 @@
         Next
 
         btnOk.Enabled = True
-
+            If txtUser.Text = "" Then
+            MessageBox.Show("Please input user id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
       
         End If
     End Sub
