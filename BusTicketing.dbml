@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BusTicketing" Class="BusTicketingDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\BusTicketing.mdf;Integrated Security=True" SettingsObjectName="NewVB.My.MySettings" SettingsPropertyName="BusTicketingConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.bus" Member="bus">
+    <Type Name="bus">
+      <Column Name="busID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="busPlateNum" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="busSeatAmount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="insuranceDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="busRoadTax" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="busStatus" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Association Name="bus_Bus_Scheduling" Member="Bus_Schedulings" ThisKey="busID" OtherKey="busID" Type="Bus_Scheduling" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Bus Scheduling]" Member="Bus_Schedulings">
+    <Type Name="Bus_Scheduling">
+      <Column Name="bsID" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="routeID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="busID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="staffID" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="bsDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="bsTime" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="bsSeatAvailable" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Association Name="Bus_Scheduling_Ticket" Member="Tickets" ThisKey="bsID" OtherKey="bsID" Type="Ticket" />
+      <Association Name="bus_Bus_Scheduling" Member="bus" ThisKey="busID" OtherKey="busID" Type="bus" IsForeignKey="true" />
+      <Association Name="Route_Bus_Scheduling" Member="Route" ThisKey="routeID" OtherKey="routeID" Type="Route" IsForeignKey="true" />
+      <Association Name="Staff_Bus_Scheduling" Member="Staff" ThisKey="staffID" OtherKey="staffID" Type="Staff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.payment" Member="payments">
+    <Type Name="payment">
+      <Column Name="payID" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="payAmount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="payDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="payment_Ticket" Member="Tickets" ThisKey="payID" OtherKey="payID" Type="Ticket" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Route" Member="Routes">
+    <Type Name="Route">
+      <Column Name="routeID" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="routeStartPoint" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="routeEndPoint" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="routeBusFare" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Route_Bus_Scheduling" Member="Bus_Schedulings" ThisKey="routeID" OtherKey="routeID" Type="Bus_Scheduling" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Staff" Member="Staffs">
+    <Type Name="Staff">
+      <Column Name="staffID" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="staffName" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="staffIC" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
+      <Column Name="staffGender" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="staffPhNum" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="staffEmail" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="staffPosition" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="staffStatus" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Staff_Bus_Scheduling" Member="Bus_Schedulings" ThisKey="staffID" OtherKey="staffID" Type="Bus_Scheduling" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ticket" Member="Tickets">
+    <Type Name="Ticket">
+      <Column Name="ticketID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="seatNumber" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="bsID" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="payID" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Association Name="Bus_Scheduling_Ticket" Member="Bus_Scheduling" ThisKey="bsID" OtherKey="bsID" Type="Bus_Scheduling" IsForeignKey="true" />
+      <Association Name="payment_Ticket" Member="payment" ThisKey="payID" OtherKey="payID" Type="payment" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Admin" Member="Admins">
+    <Type Name="Admin">
+      <Column Name="adminID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="adminPass" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="adminIC" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
