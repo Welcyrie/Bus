@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NewVB", "NewVB\NewVB.vbproj", "{E38689BA-6657-4CD8-BEAD-F45A2BDD0AFF}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "UnitTestProjectBusTicketing", "UnitTestProjectBusTicketing\UnitTestProjectBusTicketing.vbproj", "{6C34FFA8-D6F1-44FC-80EA-6E5C3600B562}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E38689BA-6657-4CD8-BEAD-F45A2BDD0AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E38689BA-6657-4CD8-BEAD-F45A2BDD0AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E38689BA-6657-4CD8-BEAD-F45A2BDD0AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E38689BA-6657-4CD8-BEAD-F45A2BDD0AFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C34FFA8-D6F1-44FC-80EA-6E5C3600B562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C34FFA8-D6F1-44FC-80EA-6E5C3600B562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C34FFA8-D6F1-44FC-80EA-6E5C3600B562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C34FFA8-D6F1-44FC-80EA-6E5C3600B562}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
